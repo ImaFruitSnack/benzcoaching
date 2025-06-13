@@ -1,0 +1,14 @@
+const express = require(`express`);
+const bodyParser = require(`body-parser`);
+const path = require('node:path');
+const fs = require(`node:fs`);
+const http = require(`node:http`);
+const dt = require('./myfirstmodule');
+const url = require('url');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = process.env.mongoToken;
+const port = process.env.PORT || 8080
+global.mtest = 0;
+global.uservalue = null;
+global.Password = null;
+global.loggedin = null;
