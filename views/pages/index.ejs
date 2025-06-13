@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-#ts {
+#myHeader {
 	background-color:#dbdbdb;
 }
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.content {
+  padding: 16px;
+}
+.sticky + .content {
+  padding-top: 102px;
+}
+.header {
+  padding: 10px 16px;
+}
+
 </style>
+</head>
 <body>
 
-
-<div id="ts">
+<header>
+<div class="header" id="myHeader">
 <h1 style="font-family: 'Brush Script MT', cursive; font-style: italic; text-align: center;"> The Harlow Investmentorship </h1>
 </div>
+</header>
+<div class="content">
 <p> The way out </p>
+</div>
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
 </body>
 </html>
