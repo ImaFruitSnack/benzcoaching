@@ -3,6 +3,7 @@ body {
     width: 100%;
     height: 100%;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+	background-image: url('/header.jpg');
 }
 
 a {
@@ -22,6 +23,18 @@ p {
     line-height: 1.5;
 }
 
+header {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+    color: #fff;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
 
 header .header-content {
     position: relative;
