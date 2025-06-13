@@ -20,6 +20,8 @@ application.use(express.urlencoded({ extended: true }));
 
 application.get(`/`, async(req, res) => {
 	res.render('pages/index');
+	let data = await fs.readFileSync('./views/pages/index.ejs');
+	res.write(data);
 })
 
 let server = http.createServer(application)
