@@ -20,6 +20,7 @@ application.use(express.urlencoded({ extended: true }));
 
 application.get(`/`, async(req, res) => {
 	res.render('pages/index');
+	console.log("connection recived");
 })
 
 let server = http.createServer(application)
