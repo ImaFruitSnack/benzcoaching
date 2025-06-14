@@ -6,7 +6,6 @@ const http = require(`node:http`);
 const url = require('url');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.mongoToken;
-const port = process.env.PORT || 8080
 global.mtest = 0;
 global.uservalue = null;
 global.Password = null;
