@@ -214,16 +214,6 @@ header .header-content .header-content-inner p {
 .navbar-default .nav>li>a:focus {
     color: #222;
 }
-.nav > div.container > div.navbar-header > a.navbar-brand {
-	font-family: 'Brush Script MT', cursive; 
-	font-style: italic; 
-	text-align: center;
-}
-a.navbar-brand > span:not(.glyphicon) {
-	font-family: 'Brush Script MT', cursive; 
-	font-style: italic; 
-	text-align: center;
-}
 
 .navbar-default .nav > li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
