@@ -15,6 +15,9 @@ a {
 a:hover,
 a:focus {
     color: forestgreen;
+}
+
+#tlt {
 	font-family: 'Brush Script MT', cursive; 
 	font-style: italic; 
 	text-align: center;
