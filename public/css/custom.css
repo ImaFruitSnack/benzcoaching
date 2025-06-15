@@ -15,9 +15,6 @@ a {
 a:hover,
 a:focus {
     color: forestgreen;
-	font-family: 'Brush Script MT', cursive; 
-	font-style: italic; 
-	text-align: center;
 }
 
 p {
@@ -218,6 +215,11 @@ header .header-content .header-content-inner p {
     color: #222;
 }
 
+.navbar-brand .nav > a.glyphicon glyphicon glyphicon-fire {
+	font-family: 'Brush Script MT', cursive; 
+	font-style: italic; 
+	text-align: center;
+}
 
 .navbar-default .nav > li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
@@ -249,9 +251,6 @@ header .header-content .header-content-inner p {
     .navbar-default .navbar-header .navbar-brand:hover,
     .navbar-default .navbar-header .navbar-brand:focus {
         color: #fff;
-		font-family: 'Brush Script MT', cursive; 
-		font-style: italic; 
-		text-align: center;
     }
 
     .navbar-default .nav > li>a,
