@@ -215,7 +215,7 @@ header .header-content .header-content-inner p {
     color: #222;
 }
 
-.navbar-brand .nav > a {
+a.navbar-brand {
 	font-family: 'Brush Script MT', cursive; 
 	font-style: italic; 
 	text-align: center;
