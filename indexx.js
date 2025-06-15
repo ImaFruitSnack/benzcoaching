@@ -23,5 +23,16 @@ application.get(`/`, async(req, res) => {
 	res.write(data);
 })
 
+application.get(`/courses`, async(req, res) => {
+})
+
+application.get(`/login`, async(req, res) => {
+
+application.get(`/signup`, async(req, res) => {
+})
+
+application.get(`/contact`, async(req, res) => {
+})
+
 let server = http.createServer(application)
 server.listen(8080, `0.0.0.0`)
