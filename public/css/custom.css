@@ -10,9 +10,6 @@ a {
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
-	font-family: 'Brush Script MT', cursive; 
-	font-style: italic; 
-	text-align: center;
 }
 
 a:hover,
