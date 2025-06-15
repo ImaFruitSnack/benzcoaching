@@ -29,6 +29,7 @@ application.get('/courses', async(req, res) => {
 
 application.get('/login', async(req, res) => {
 	res.render('pages/login');
+})
 
 application.get('/signup', async(req, res) => {
 	res.render('pages/signup');
