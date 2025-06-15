@@ -215,7 +215,7 @@ header .header-content .header-content-inner p {
     color: #222;
 }
 
-.navbar-brand .nav > a.glyphicon-fire {
+.navbar-brand .nav > a {
 	font-family: 'Brush Script MT', cursive; 
 	font-style: italic; 
 	text-align: center;
