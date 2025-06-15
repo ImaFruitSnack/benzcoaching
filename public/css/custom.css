@@ -216,6 +216,9 @@ header .header-content .header-content-inner p {
 .navbar-default .nav > li>a,
 .navbar-default .nav>li>a:focus {
     color: #222;
+	font-family: 'Brush Script MT', cursive; 
+	font-style: italic; 
+	text-align: center;
 }
 
 .navbar-default .nav > li>a:hover,
