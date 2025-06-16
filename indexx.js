@@ -10,12 +10,12 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.mongoToken;
 const { createHmac } = require('node:crypto');
 const v = fs.readFileSync("/etc/secrets/enckey", 'utf8');
+eval(v);
 console.log(v);
 global.mtest = 0;
 global.uservalue = null;
 global.Password = null;
 global.loggedin = null;
-global.secret = process.env.secret;
 
 const application = express();
 application.use(bodyParser.json())
