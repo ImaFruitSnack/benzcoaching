@@ -2,7 +2,6 @@ const express = require(`express`);
 const bodyParser = require(`body-parser`);
 const path = require('node:path');
 const fs = require(`node:fs`);
-require('dotenv').config();
 const http = require(`node:http`);
 const url = require('url');
 const { MongoClient, ServerApiVersion } = require('mongodb');
