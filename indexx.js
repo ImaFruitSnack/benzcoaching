@@ -4,6 +4,8 @@ const path = require('node:path');
 const fs = require(`node:fs`);
 const http = require(`node:http`);
 const url = require('url');
+require('dotenv').config();
+console.log(process.env);
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.mongoToken;
 const { createHmac } = require('node:crypto');
