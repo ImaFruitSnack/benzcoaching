@@ -20,7 +20,7 @@ application.use(express.static(path.join(__dirname, 'public')));
 application.set('view engine' , 'ejs');
 application.use(express.urlencoded({ extended: true }));
 
-async Function encryptt(word) {
+async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
