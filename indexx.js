@@ -25,14 +25,13 @@ async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
-	console.log(hash);
 	return hash;
 }
 
 application.get(`/`, async(req, res) => {
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
-	encryptt('test')
+	console.log(encryptt('test'));
 	res.write(data);
 })
 
