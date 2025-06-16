@@ -14,6 +14,7 @@ global.mtest = 0;
 global.uservalue = null;
 global.Password = null;
 global.loggedin = null;
+global.tdata = null;
 
 const application = express();
 application.use(bodyParser.json())
@@ -25,13 +26,14 @@ async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
+	tdata = hash;
 	return hash;
 }
 
 application.get(`/`, async(req, res) => {
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
-	let tdata = 'test';
+	tdata = 'test';
 	encryptt(tdata);
 	console.log(tdata);
 	res.write(data);
