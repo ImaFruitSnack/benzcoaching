@@ -31,7 +31,9 @@ async function encryptt(word) {
 application.get(`/`, async(req, res) => {
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
-	console.log(encryptt('test'));
+	let tdata = 'test';
+	encryptt(tdata);
+	console.log(tdata);
 	res.write(data);
 })
 
