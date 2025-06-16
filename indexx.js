@@ -32,6 +32,7 @@ application.get(`/`, async(req, res) => {
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
 	encryptt('test')
+	console.log(await hash);
 	res.write(data);
 })
 
