@@ -1,5 +1,6 @@
 const express = require(`express`);
 const bodyParser = require(`body-parser`);
+const cookieParser = require(`cookie-parser`);
 const path = require('node:path');
 const fs = require(`node:fs`);
 const http = require(`node:http`);
@@ -17,7 +18,8 @@ global.loggedin = null;
 global.tdata = null;
 
 const application = express();
-application.use(bodyParser.json())
+application.use(cookieParser());
+application.use(bodyParser.json());
 application.use(express.static(path.join(__dirname, 'public')));
 application.set('view engine' , 'ejs');
 application.use(express.urlencoded({ extended: true }));
@@ -32,22 +34,16 @@ async function run() {
     const query = { user: uservalue['username'] };
     const user = await users.findOne(query);
 	encryptt(uservalue['password'].toString());
-	console.log(tdata);
-	console.log("got");
 	if (user == null) {
 		global.loggedin = false;
-		console.log("how");
-		console.log(uservalue['username']);
 		return [loggedin,mtest];
 	}
 	if (user['password'].toString() == tdata.toString() && user['user'].toString() == uservalue['username'].toString()) {
 		global.mtest = user;
-		console.log("success");
 		global.loggedin = true;
 		return [loggedin,mtest];
 	} else {
 		global.loggedin = false;
-		console.log("failed");
 		return [loggedin,mtest];
 	}
   } finally {
@@ -93,11 +89,9 @@ application.post('/submit' , async(req , res) => {
 	global.uservalue = req.body;
 	await run().catch(console.dir);
 	if (loggedin == true) {
-		console.log(tdata);
 		res.redirect('/mycourses');
 	} else if (loggedin == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
-		console.log(tdata);
 	} else {
 		console.log("what?");
 		return;
