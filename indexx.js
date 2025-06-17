@@ -22,6 +22,31 @@ application.use(express.static(path.join(__dirname, 'public')));
 application.set('view engine' , 'ejs');
 application.use(express.urlencoded({ extended: true }));
 
+async function run() {
+  try {
+	const client = new MongoClient(uri);
+    const database = client.db('benzdb');
+    const users = database.collection('userdata');
+    const query = { user: uservalue['username'] };
+    const user = await users.findOne(query);
+	encryptt(uservalue['password'].toString());
+	if (user == null) {
+		global.loggedin = false;
+		return [loggedin,mtest];
+	}
+	if (user['password'].toString() == tdata.toString() && user['user'].toString() == uservalue['username'].toString()) {
+		global.mtest = user;
+		global.loggedin = true;
+		return [loggedin,mtest];
+	} else {
+		global.loggedin = false;
+		return [loggedin,mtest];
+	}
+  } finally {
+    await client.close();
+  }
+}
+
 async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
@@ -33,9 +58,6 @@ async function encryptt(word) {
 application.get(`/`, async(req, res) => {
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
-	tdata = 'test';
-	encryptt(tdata);
-	console.log(tdata);
 	res.write(data);
 })
 
@@ -44,7 +66,7 @@ application.get('/courses', async(req, res) => {
 })
 
 application.get('/login', async(req, res) => {
-	res.render('pages/login');
+	res.render('pages/login', {er:null});
 })
 
 application.get('/signup', async(req, res) => {
@@ -53,6 +75,19 @@ application.get('/signup', async(req, res) => {
 
 application.get('/contact', async(req, res) => {
 	res.render('pages/contact');
+})
+
+application.post('/submit' , async(req , res) => {
+	global.uservalue = req.body;
+	await run().catch(console.dir);
+	if (loggedin == true) {
+		res.render('pages/mycourses' , {er:null});
+	} else if (loggedin == false) {
+		res.render('pages/login' , {er:"Username Or password is incorrect"});
+	} else {
+		console.log("what?");
+		return;
+	}
 })
 
 let server = http.createServer(application)
