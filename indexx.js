@@ -94,7 +94,7 @@ application.post('/submit' , async(req , res) => {
 	await run().catch(console.dir);
 	if (loggedin == true) {
 		console.log(tdata);
-		res.redirect('pages/mycourses');
+		res.redirect('/mycourses');
 	} else if (loggedin == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
 		console.log(tdata);
