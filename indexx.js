@@ -73,7 +73,7 @@ application.get(`/`, async(req, res) => {
 	res.cookie('loggedin' , null);
 	res.cookie('tdata' , null);
 	res.send('cookie set');
-	res.render('pages/index');
+	//res.render('pages/index');
 })
 
 application.get('/courses', async(req, res) => {
