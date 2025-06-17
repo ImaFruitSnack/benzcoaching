@@ -23,6 +23,7 @@ const client = new MongoClient(uri);
 
 async function run(req, res) {
   try {
+	req.body;
 	req.cookies.uservalue;
 	req.cookies.loggedin;
 	req.cookies.mtest;
