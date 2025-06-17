@@ -21,7 +21,7 @@ application.use(express.urlencoded({ extended: true }));
 
 const client = new MongoClient(uri);
 
-async(req, res) function run() {
+async function run() {
   try {
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
@@ -46,7 +46,7 @@ async(req, res) function run() {
   }
 }
 
-async(req, res) function encryptt(word) {
+async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
