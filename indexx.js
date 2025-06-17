@@ -103,7 +103,8 @@ application.get('/contact', async(req, res) => {
 })
 
 application.get('/mycourses', async(req, res) => {
-	if (!req.cookies.token) return res.status(401).send();
+	req.cookies.user;
+	if (!req.cookies.user) return res.status(401).send();
 	res.render('pages/mycourses');
 })
 
