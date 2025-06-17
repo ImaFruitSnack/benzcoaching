@@ -67,14 +67,13 @@ async function getCookie(name) {
 }
 
 application.get(`/`, async(req, res) => {
-	res.cookie('mtest' , 0)
-	res.cookie('uservalue' , null)
-	res.cookie('Password' , null)
-	res.cookie('loggedin' , null)
-	res.cookie('tdata' , null).send('cookie set');
+	res.cookie('mtest' , 0);
+	res.cookie('uservalue' , null);
+	res.cookie('Password' , null);
+	res.cookie('loggedin' , null);
+	res.cookie('tdata' , null);
 	res.render('pages/index');
-	let data = await fs.readFileSync('./views/pages/index.ejs');
-	res.write(data);
+	res.send('cookie set');
 })
 
 application.get('/courses', async(req, res) => {
