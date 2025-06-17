@@ -85,6 +85,10 @@ application.get('/contact', async(req, res) => {
 	res.render('pages/contact');
 })
 
+application.get('/mycourses', async(req, res) => {
+	res.render('pages/mycourses');
+})
+
 application.post('/submit' , async(req , res) => {
 	global.uservalue = req.body;
 	await run().catch(console.dir);
