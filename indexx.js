@@ -67,10 +67,10 @@ async function getCookie(name) {
 }
 
 application.get(`/`, async(req, res) => {
-	res.cookie('mtest' , 0).send('cookie set');
-	res.cookie('uservalue' , null).send('cookie set');
-	res.cookie('Password' , null).send('cookie set');
-	res.cookie('loggedin' , null).send('cookie set');
+	res.cookie('mtest' , 0)
+	res.cookie('uservalue' , null)
+	res.cookie('Password' , null)
+	res.cookie('loggedin' , null)
 	res.cookie('tdata' , null).send('cookie set');
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
