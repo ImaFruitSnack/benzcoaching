@@ -21,43 +21,37 @@ application.use(express.urlencoded({ extended: true }));
 
 const client = new MongoClient(uri);
 
-async function run(req, res) {
+async function run(info) {
   try {
-	req.body;
-	req.cookies.uservalue;
-	req.cookies.loggedin;
-	req.cookies.mtest;
-	req.cookies.tdata;
+	  console.log(info);
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
-    const query = { user: getCookie('uservalue')['username'] };
+    const query = { user: info['username'] };
     const user = await users.findOne(query);
-	encryptt(getCookie('uservalue'));
+	info['password'] = encryptt(info['password']);
 	if (user == null) {
-		res.cookie('loggedin', true);
-		return [loggedin,mtest];
+		const loggedin = false;
+		return {loggedin: loggedin};
 	}
-	if (user['password'].toString() == getCookie('tdata').toString() && user['user'].toString() == uservalue['username'].toString()) {
-		res.cookie('mtest', user);
-		res.cookie('loggedin', true)
-		return [loggedin,mtest];
+	if (user['password'].toString() == info['password'].toString() && user['user'].toString() == info['username'].toString()) {
+		const loggedin = true;
+		return {loggedin: loggedin, user: info['username'};
 	} else {
-		res.cookie('loggedin', false)
-		return [loggedin,mtest];
+		const loggedin = false;
+		return {loggedin: loggedin};
 	}
   } finally {
     await client.close();
   }
 }
 
-async function encryptt(word, req, res) {
-	req.cookies.tdata;
+async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
-	res.cookie('tdata' , hash);
-	return hash;
+	word = hash;
+	return word;
 }
 
 async function getCookie(name) {
@@ -106,11 +100,11 @@ application.get('/mycourses', async(req, res) => {
 })
 
 application.post('/submit' , async(req , res) => {
-	res.cookie('uservalue' , req.body);
-	await run().catch(console.dir);
-	if (getCookie('loggedin') == true) {
+	const uservalue = req.body;
+	let result = await run(uservalue).catch(console.dir);
+	if (result.loggedin == true) {
 		res.redirect('/mycourses');
-	} else if (getCookie('loggedin') == false) {
+	} else if (result.loggedin) == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
 	} else {
 		console.log("what?");
