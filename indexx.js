@@ -69,10 +69,7 @@ async function getCookie(name) {
 }
 
 application.get(`/`, async(req, res) => {
-	res.clearCookie('uservalue');
-	res.clearCookie('mtest');
-	res.clearCookie('tdata');
-	res.clearCookie('password');
+	res.clearCookie('Password');
 	res.cookie('user' , null);
 	res.cookie('loggedin' , false);
 	res.render('pages/index');
