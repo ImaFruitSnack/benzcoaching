@@ -25,6 +25,7 @@ application.use(express.urlencoded({ extended: true }));
 async function run() {
   try {
 	const client = new MongoClient(uri);
+	consol.log(client);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
     const query = { user: uservalue['username'] };
