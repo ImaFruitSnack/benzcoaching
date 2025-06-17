@@ -119,7 +119,9 @@ header .header-content .header-content-inner p {
 	margin-right: auto;
     margin-left: auto;
 }
-
+.lavel {
+	width = 100%;
+}
 .promo,
 .promo h3,
 .promo a:link,
