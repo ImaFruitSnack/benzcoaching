@@ -22,7 +22,7 @@ application.use(express.urlencoded({ extended: true }));
 const client = new MongoClient(uri);
 
 async function run() {
-  try {
+  if (typeof window !== "undefined") {
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
