@@ -32,13 +32,16 @@ async function run(info) {
 	info['password'] = encryptt(info['password']);
 	if (user == null) {
 		const loggedin = false;
+		console.log('it was null');
 		return {loggedin: loggedin};
 	}
 	if (user['password'].toString() == info['password'].toString() && user['user'].toString() == info['username'].toString()) {
 		const loggedin = true;
+		console.log('it was truee');
 		return {loggedin: loggedin, user: info['username']};
 	} else {
 		const loggedin = false;
+		console.log('it was false');
 		return {loggedin: loggedin};
 	}
   } finally {
