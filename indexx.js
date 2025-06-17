@@ -28,7 +28,7 @@ async function run() {
     const users = database.collection('userdata');
     const query = { user: getCookie('uservalue')['username'] };
     const user = await users.findOne(query);
-	encryptt(getCookie('uservalue')['password'].toString());
+	encryptt(getCookie('uservalue'));
 	if (user == null) {
 		res.cookie('loggedin', true);
 		return [loggedin,mtest];
