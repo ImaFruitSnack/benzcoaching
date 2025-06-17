@@ -23,29 +23,21 @@ const client = new MongoClient(uri);
 
 async function run(info) {
   try {
-	  console.log(info);
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
     const query = { user: info['username'] };
     const user = await users.findOne(query);
 	info['password'] = await encryptt(info['password']);
-	console.log(info['password']);
 	if (user == null) {
 		const loggedin = false;
-		console.log('it was null');
 		return {loggedin: loggedin};
 	}
 	if (user['password'].toString() == info['password'].toString() && user['user'].toString() == info['username'].toString()) {
 		const loggedin = true;
-		console.log('it was truee');
 		return {loggedin: loggedin, user: info['username']};
 	} else {
 		const loggedin = false;
-		console.log('it was false');
-		console.log(info['password'].toString());
-		console.log(user['password'].toString());
-		
 		return {loggedin: loggedin};
 	}
   } finally {
@@ -58,7 +50,6 @@ async function encryptt(word) {
 			.update('${word}')
                .digest('hex');
 	word = hash;
-	console.log(word);
 	return word;
 }
 
@@ -78,6 +69,10 @@ async function getCookie(name) {
 }
 
 application.get(`/`, async(req, res) => {
+	res.clearCookie('uservalue');
+	res.clearCookie('mtest');
+	res.clearCookie('tdata');
+	res.clearCookie('password');
 	res.cookie('user' , null);
 	res.cookie('loggedin' , false);
 	res.render('pages/index');
