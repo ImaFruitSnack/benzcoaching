@@ -28,7 +28,9 @@ async function run(info) {
     const users = database.collection('userdata');
     const query = { user: info['username'] };
     const user = await users.findOne(query);
+	console.log(info['password']);
 	info['password'] = await encryptt(info['password']);
+	console.log(info['password']);
 	if (user == null) {
 		const loggedin = false;
 		return {loggedin: loggedin};
