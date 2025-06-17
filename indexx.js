@@ -111,6 +111,7 @@ application.post('/submit' , async(req , res) => {
 	const uservalue = req.body;
 	let result = await run(uservalue).catch(console.dir);
 	if (result.loggedin == true) {
+		res.cookie('user', result.user);
 		res.redirect('/mycourses');
 	} else if (result.loggedin == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
