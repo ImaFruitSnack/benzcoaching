@@ -78,11 +78,8 @@ async function getCookie(name) {
 }
 
 application.get(`/`, async(req, res) => {
-	res.cookie('mtest' , 0);
-	res.cookie('uservalue' , null);
-	res.cookie('Password' , null);
-	res.cookie('loggedin' , null);
-	res.cookie('tdata' , null);
+	res.cookie('user' , null);
+	res.cookie('loggedin' , false);
 	res.render('pages/index');
 })
 
@@ -104,7 +101,8 @@ application.get('/contact', async(req, res) => {
 
 application.get('/mycourses', async(req, res) => {
 	req.cookies.user;
-	if (!req.cookies.user) return res.status(401).send();
+	req.cookies.loggedin;
+	if (!req.cookies.user && !req.cookies.loggedin) return res.status(401).send();
 	res.render('pages/mycourses');
 })
 
@@ -113,6 +111,7 @@ application.post('/submit' , async(req , res) => {
 	let result = await run(uservalue).catch(console.dir);
 	if (result.loggedin == true) {
 		res.cookie('user', result.user);
+		res.cookie('loggedin', result.loggedin);
 		res.redirect('/mycourses');
 	} else if (result.loggedin == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
