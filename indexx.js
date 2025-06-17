@@ -82,9 +82,11 @@ application.post('/submit' , async(req , res) => {
 	global.uservalue = req.body;
 	await run().catch(console.dir);
 	if (loggedin == true) {
+		console.log(tdata);
 		res.render('pages/mycourses' , {er:null});
 	} else if (loggedin == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
+		console.log(tdata);
 	} else {
 		console.log("what?");
 		return;
