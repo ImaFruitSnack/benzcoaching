@@ -36,7 +36,7 @@ async function run(info) {
 	}
 	if (user['password'].toString() == info['password'].toString() && user['user'].toString() == info['username'].toString()) {
 		const loggedin = true;
-		return {loggedin: loggedin, user: info['username'};
+		return {loggedin: loggedin, user: info['username']};
 	} else {
 		const loggedin = false;
 		return {loggedin: loggedin};
