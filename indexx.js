@@ -35,6 +35,9 @@ async function run(info) {
 	}
 	if (user['password'].toString() == info['password'].toString() && user['user'].toString() == info['username'].toString()) {
 		const loggedin = true;
+		console.log(user['password'].toString());
+		console.log(info['password'].toString());
+		
 		return {loggedin: loggedin, user: info['username']};
 	} else {
 		const loggedin = false;
@@ -69,7 +72,6 @@ async function getCookie(name) {
 }
 
 application.get(`/`, async(req, res) => {
-	res.clearCookie('Password');
 	res.cookie('user' , null);
 	res.cookie('loggedin' , false);
 	res.render('pages/index');
