@@ -27,7 +27,7 @@ const client = new MongoClient(uri);
 async function run() {
   try {
 	const client = new MongoClient(uri);
-	consolee.log(client);
+	console.log(client);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
     const query = { user: uservalue['username'] };
