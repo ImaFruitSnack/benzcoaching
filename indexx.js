@@ -30,6 +30,7 @@ async function run(info) {
     const query = { user: info['username'] };
     const user = await users.findOne(query);
 	info['password'] = encryptt(info['password']);
+	console.log(info['password']);
 	if (user == null) {
 		const loggedin = false;
 		console.log('it was null');
@@ -57,6 +58,7 @@ async function encryptt(word) {
 			.update('${word}')
                .digest('hex');
 	word = hash;
+	console.log(word);
 	return word;
 }
 
