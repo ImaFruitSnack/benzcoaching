@@ -23,6 +23,7 @@ const client = new MongoClient(uri);
 
 async function run(req, res) {
   try {
+	req.cookies;
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
@@ -47,6 +48,7 @@ async function run(req, res) {
 }
 
 async function encryptt(word, req, res) {
+	req.cookies.title = 'tdata';
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
