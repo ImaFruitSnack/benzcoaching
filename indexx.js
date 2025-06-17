@@ -22,7 +22,7 @@ application.use(express.urlencoded({ extended: true }));
 const client = new MongoClient(uri);
 
 async function run() {
-  if (typeof window !== "undefined") {
+  try {
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
@@ -55,15 +55,18 @@ async function encryptt(word) {
 }
 
 async function getCookie(name) {
-  const cookieString = document.cookie;
-  const cookies = cookieString.split(';');
-  for (let cookie of cookies) {
-    let [cookieName, cookieValue] = cookie.trim().split('=');
-    if (cookieName === name) {
-      return cookieValue;
+	if (typeof window !== "undefined") {
+		
+	const cookieString = document.cookie;
+	const cookies = cookieString.split(';');
+		for (let cookie of cookies) {
+			let [cookieName, cookieValue] = cookie.trim().split('=');
+			if (cookieName === name) {
+			return cookieValue;
     }
   }
   return null;
+	}
 }
 
 application.get(`/`, async(req, res) => {
