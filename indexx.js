@@ -30,15 +30,15 @@ async function run() {
     const user = await users.findOne(query);
 	encryptt(getCookie('uservalue')['password'].toString());
 	if (user == null) {
-		res.cookie('loggedin', true).send('cookie set');
+		res.cookie('loggedin', true);
 		return [loggedin,mtest];
 	}
 	if (user['password'].toString() == getCookie('tdata').toString() && user['user'].toString() == uservalue['username'].toString()) {
-		res.cookie('mtest', user).send('cookie set');
-		res.cookie('loggedin', true).send('cookie set');
+		res.cookie('mtest', user);
+		res.cookie('loggedin', true)
 		return [loggedin,mtest];
 	} else {
-		res.cookie('loggedin', false).send('cookie set');
+		res.cookie('loggedin', false)
 		return [loggedin,mtest];
 	}
   } finally {
@@ -50,7 +50,7 @@ async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
-	res.cookie('tdata' , hash).send('cookie set');
+	res.cookie('tdata' , hash);
 	return hash;
 }
 
@@ -98,7 +98,7 @@ application.get('/mycourses', async(req, res) => {
 })
 
 application.post('/submit' , async(req , res) => {
-	res.cookie('uservalue' , req.body).send('cookie set');
+	res.cookie('uservalue' , req.body);
 	await run().catch(console.dir);
 	if (getCookie('loggedin') == true) {
 		res.redirect('/mycourses');
