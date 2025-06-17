@@ -33,8 +33,11 @@ async function run() {
     const user = await users.findOne(query);
 	encryptt(uservalue['password'].toString());
 	console.log(tdata);
+	console.log("got");
 	if (user == null) {
 		global.loggedin = false;
+		console.log("how");
+		console.log(uservalue['username']);
 		return [loggedin,mtest];
 	}
 	if (user['password'].toString() == tdata.toString() && user['user'].toString() == uservalue['username'].toString()) {
