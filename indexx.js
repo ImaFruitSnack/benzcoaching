@@ -28,17 +28,13 @@ async function run(info) {
     const users = database.collection('userdata');
     const query = { user: info['username'] };
     const user = await users.findOne(query);
-	console.log(info['password']);
 	info['password'] = await encryptt(info['password']);
-	console.log(info['password']);
 	if (user == null) {
 		const loggedin = false;
 		return {loggedin: loggedin};
 	}
 	if (user['password'].toString() == info['password'].toString() && user['user'].toString() == info['username'].toString()) {
 		const loggedin = true;
-		console.log(user['password'].toString());
-		console.log(info['password'].toString());
 		
 		return {loggedin: loggedin, user: info['username']};
 	} else {
