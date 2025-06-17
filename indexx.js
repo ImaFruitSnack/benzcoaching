@@ -52,7 +52,7 @@ async function run(info) {
 
 async function encryptt(word) {
 	const hash = createHmac('sha256', secret)
-			.update('${word}')
+			.update(word)
                .digest('hex');
 	word = hash;
 	return word;
