@@ -11,11 +11,6 @@ const uri = process.env.mongoToken;
 const { createHmac } = require('node:crypto');
 const v = fs.readFileSync("/etc/secrets/enckey", 'utf8');
 eval(v);
-global.mtest = 0;
-global.uservalue = null;
-global.Password = null;
-global.loggedin = null;
-global.tdata = null;
 
 const application = express();
 application.use(cookieParser());
@@ -26,24 +21,24 @@ application.use(express.urlencoded({ extended: true }));
 
 const client = new MongoClient(uri);
 
-async function run() {
+async(req, res) function run() {
   try {
 	const client = new MongoClient(uri);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
-    const query = { user: uservalue['username'] };
+    const query = { user: getCookie('uservalue')['username'] };
     const user = await users.findOne(query);
-	encryptt(uservalue['password'].toString());
+	encryptt(getCookie('uservalue')['password'].toString());
 	if (user == null) {
-		global.loggedin = false;
+		res.cookie('loggedin', true).send('cookie set');
 		return [loggedin,mtest];
 	}
-	if (user['password'].toString() == tdata.toString() && user['user'].toString() == uservalue['username'].toString()) {
-		global.mtest = user;
-		global.loggedin = true;
+	if (user['password'].toString() == getCookie('tdata').toString() && user['user'].toString() == uservalue['username'].toString()) {
+		res.cookie('mtest', user).send('cookie set');
+		res.cookie('loggedin', true).send('cookie set');
 		return [loggedin,mtest];
 	} else {
-		global.loggedin = false;
+		res.cookie('loggedin', false).send('cookie set');
 		return [loggedin,mtest];
 	}
   } finally {
@@ -51,15 +46,32 @@ async function run() {
   }
 }
 
-async function encryptt(word) {
+async(req, res) function encryptt(word) {
 	const hash = createHmac('sha256', secret)
 			.update('${word}')
                .digest('hex');
-	tdata = hash;
+	res.cookie('tdata' , hash).send('cookie set');
 	return hash;
 }
 
+async function getCookie(name) {
+  const cookieString = document.cookie;
+  const cookies = cookieString.split(';');
+  for (let cookie of cookies) {
+    let [cookieName, cookieValue] = cookie.trim().split('=');
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  return null;
+}
+
 application.get(`/`, async(req, res) => {
+	res.cookie('mtest' , 0).send('cookie set');
+	res.cookie('uservalue' , null).send('cookie set');
+	res.cookie('Password' , null).send('cookie set');
+	res.cookie('loggedin' , null).send('cookie set');
+	res.cookie('tdata' , null).send('cookie set');
 	res.render('pages/index');
 	let data = await fs.readFileSync('./views/pages/index.ejs');
 	res.write(data);
@@ -82,15 +94,16 @@ application.get('/contact', async(req, res) => {
 })
 
 application.get('/mycourses', async(req, res) => {
+	if (!req.cookies.token) return res.status(401).send();
 	res.render('pages/mycourses');
 })
 
 application.post('/submit' , async(req , res) => {
-	global.uservalue = req.body;
+	res.cookie('uservalue' , req.body).send('cookie set');
 	await run().catch(console.dir);
-	if (loggedin == true) {
+	if (getCookie('loggedin') == true) {
 		res.redirect('/mycourses');
-	} else if (loggedin == false) {
+	} else if (getCookie('loggedin') == false) {
 		res.render('pages/login' , {er:"Username Or password is incorrect"});
 	} else {
 		console.log("what?");
