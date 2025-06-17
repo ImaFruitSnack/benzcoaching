@@ -116,6 +116,8 @@ header .header-content .header-content-inner p {
 
 .content-4 {
     background-color: #222;
+	margin-right: auto;
+    margin-left: auto;
 }
 
 .promo,
