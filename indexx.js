@@ -22,6 +22,8 @@ application.use(express.static(path.join(__dirname, 'public')));
 application.set('view engine' , 'ejs');
 application.use(express.urlencoded({ extended: true }));
 
+const client = new MongoClient(uri);
+
 async function run() {
   try {
 	const client = new MongoClient(uri);
