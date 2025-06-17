@@ -27,7 +27,6 @@ const client = new MongoClient(uri);
 async function run() {
   try {
 	const client = new MongoClient(uri);
-	console.log(client);
     const database = client.db('benzdb');
     const users = database.collection('userdata');
     const query = { user: uservalue['username'] };
@@ -40,10 +39,12 @@ async function run() {
 	}
 	if (user['password'].toString() == tdata.toString() && user['user'].toString() == uservalue['username'].toString()) {
 		global.mtest = user;
+		console.log("success");
 		global.loggedin = true;
 		return [loggedin,mtest];
 	} else {
 		global.loggedin = false;
+		console.log("failed");
 		return [loggedin,mtest];
 	}
   } finally {
