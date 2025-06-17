@@ -42,6 +42,9 @@ async function run(info) {
 	} else {
 		const loggedin = false;
 		console.log('it was false');
+		console.log(info['password'].toString());
+		console.log(user['password'].toString());
+		
 		return {loggedin: loggedin};
 	}
   } finally {
