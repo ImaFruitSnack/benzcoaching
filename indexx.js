@@ -30,6 +30,7 @@ async function run() {
     const query = { user: uservalue['username'] };
     const user = await users.findOne(query);
 	encryptt(uservalue['password'].toString());
+	console.log(tdata);
 	if (user == null) {
 		global.loggedin = false;
 		return [loggedin,mtest];
