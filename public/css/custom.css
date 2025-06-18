@@ -121,6 +121,8 @@ header .header-content .header-content-inner p {
 }
 .lavel {
 	width = 100%;
+	justify-self; 
+	align-self;
 }
 .promo,
 .promo h3,
