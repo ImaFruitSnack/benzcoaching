@@ -124,6 +124,9 @@ header .header-content .header-content-inner p {
     margin-left: auto;
     max-width: 80%;
     font-size: 18px;
+	-webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
 }
 .promo,
 .promo h3,
