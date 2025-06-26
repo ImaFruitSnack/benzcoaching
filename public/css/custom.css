@@ -120,9 +120,8 @@ header .header-content .header-content-inner p {
     margin-left: auto;
 }
 .lavel {
-	width = 100%;
-	justify-self; 
-	align-self;
+	position: absolute;
+	top: 50%;
 }
 .promo,
 .promo h3,
