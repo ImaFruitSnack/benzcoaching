@@ -128,8 +128,8 @@ header .header-content .header-content-inner p {
     -moz-transition: all .35s;
     transition: all .35s;
 }
-.lavel label 
-color: white;
+.lavel label {
+	color: white;
 }
 .promo,
 .promo h3,
