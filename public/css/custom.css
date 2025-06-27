@@ -131,6 +131,10 @@ header .header-content .header-content-inner p {
 label.lavel {
 	color: white;
 }
+input.lavel {
+	border-radius: 10px;
+}
+
 .promo,
 .promo h3,
 .promo a:link,
